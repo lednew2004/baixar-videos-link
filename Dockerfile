@@ -1,17 +1,14 @@
-# Usa imagem oficial do Python
 FROM python:3.10
 
-# Define diretório de trabalho
 WORKDIR /app
 
-# Copia os arquivos do projeto
+# Instala dependências
+RUN apt-get update && apt-get install -y ffmpeg
+
+# Copia o projeto
 COPY . .
 
-# Instala dependências
+# Instala pacotes do Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expõe a porta padrão do Flask
-EXPOSE 8080
-
-# Comando para iniciar o app
 CMD ["python", "baixar.py"]
